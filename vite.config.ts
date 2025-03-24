@@ -1,4 +1,3 @@
-
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
@@ -44,8 +43,8 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Для корректной работы при открытии файла напрямую
-  base: './',
+  // Настройка для GitHub Pages
+  base: '/hfdf/',
   // Добавляем оптимизации для более быстрой разработки
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
