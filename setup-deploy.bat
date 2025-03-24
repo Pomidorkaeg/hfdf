@@ -1,26 +1,35 @@
 @echo off
 echo Setting up GitHub Pages deployment...
 
-REM Инициализация Git, если еще не инициализирован
+REM Проверяем наличие Git
+where git >nul 2>nul
+if %errorlevel% neq 0 (
+    echo Git is not installed. Please install Git first.
+    pause
+    exit /b 1
+)
+
+REM Инициализируем Git репозиторий если его нет
 if not exist .git (
     git init
 )
 
-REM Добавление удаленного репозитория
+REM Добавляем удаленный репозиторий
+git remote remove origin
 git remote add origin https://github.com/Pomidorkaeg/hfdf.git
 
-REM Создание и переключение на ветку main
-git checkout -b main
+REM Создаем и переключаемся на ветку gh-pages
+git checkout -b gh-pages
 
-REM Добавление всех файлов
+REM Добавляем все файлы
 git add .
 
-REM Создание первого коммита
-git commit -m "Initial commit"
+REM Создаем коммит
+git commit -m "Initial deployment to GitHub Pages"
 
-REM Отправка в репозиторий
-git push -u origin main
+REM Отправляем изменения
+git push -u origin gh-pages --force
 
-echo Setup completed! Your site will be deployed automatically to GitHub Pages.
-echo Please check the Actions tab in your GitHub repository to monitor the deployment.
-echo Once deployed, your site will be available at: https://Pomidorkaeg.github.io/hfdf/ 
+echo Deployment setup completed!
+echo Please check your repository settings to enable GitHub Pages.
+pause 
