@@ -11,6 +11,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     outDir: "dist",
+    assetsDir: 'assets',
     // Генерируем ресурсы с постоянными именами (без хешей) для простоты ссылок
     rollupOptions: {
       output: {
